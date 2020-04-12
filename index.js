@@ -1,46 +1,57 @@
 const express = require('express')
-const path = require('path')
 
 const app = new express()
 const ejs = require('ejs')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const BlogPost = require('./models/BlogPost.js')
 const fileUpload = require('express-fileupload')
+
+const newPostController = require('./controllers/newPost')
+const homeController = require('./controllers/home')
+const storePostController = require('./controllers/storePost')
+const getPostController = require('./controllers/getPost')
+
+const validateMiddleware = require("./middleware/validateMiddleware");
+
+//const path = require('path')
+//const BlogPost = require('./models/BlogPost.js')
 
 app.use(fileUpload())
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true});
+//connection to mongodb
+mongoose.connect('mongodb://localhost/my_database', {
+  useNewUrlParser: true
+});
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
-app.set('view engine','ejs')
+//routing
+app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 
-app.listen(4000, ()=>{
-    console.log('App listening on port 4000 ...')
+app.listen(4000, () => {
+  console.log('App listening on port 4000 ...')
 })
 
-app.get('/',async (req,res)=>{
-    console.log("home starting...")
-    const blogposts = await BlogPost.find({})
-    res.render('index',{
-        blogposts
-    });
-})
+app.use('/posts/new', validateMiddleware)
 
-app.get('/about',(req,res)=>{
-    res.render('about');
-})
+app.get('/create', newPostController)
+app.get('/', homeController)
+app.get('/post/:id', getPostController)
+app.post('/posts/store', storePostController)
 
-app.get('/contact',(req,res)=>{
-    res.render('contact');
-})
 
-app.get('/post',(req,res)=>{
-    res.render('post')
-})
+/*
+
+const validateMiddleWare = (req,res,next)=>{
+    if(req.files == null || req.body.title == null || req.body.title == null){
+        return res.redirect('/posts/new')
+    }
+    next()
+}
 
 app.get('/post/:id',async (req,res)=>{
     const blogpost = await BlogPost.findById(req.params.id)
@@ -48,10 +59,6 @@ app.get('/post/:id',async (req,res)=>{
     res.render('post',{
         blogpost
     });
-})
-
-app.get('/create',(req,res)=>{
-    res.render('create')
 })
 
 app.post('/posts/store', (req,res)=>{
@@ -64,3 +71,12 @@ app.post('/posts/store', (req,res)=>{
         res.redirect('/')
     })
 })
+
+app.get('/',async (req,res)=>{
+    console.log("home starting...")
+    const blogposts = await BlogPost.find({})
+    res.render('index',{
+        blogposts
+    });
+})
+*/
