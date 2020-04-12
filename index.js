@@ -6,6 +6,11 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
 
+const newUserController = require('./controllers/newUser')
+const storeUserController = require('./controllers/storeUser')
+const loginController = require('./controllers/login')
+const loginUserController = require('./controllers/loginUser')
+
 const newPostController = require('./controllers/newPost')
 const homeController = require('./controllers/home')
 const storePostController = require('./controllers/storePost')
@@ -42,6 +47,11 @@ app.get('/create', newPostController)
 app.get('/', homeController)
 app.get('/post/:id', getPostController)
 app.post('/posts/store', storePostController)
+
+app.get('/auth/register', newUserController)
+app.post('/users/register', storeUserController)
+app.get('/auth/login',loginController)
+app.post('/users/login', loginUserController)
 
 
 /*
