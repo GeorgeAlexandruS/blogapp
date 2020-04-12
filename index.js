@@ -6,26 +6,29 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
 
-const newUserController = require('./controllers/newUser')
-const storeUserController = require('./controllers/storeUser')
-const loginController = require('./controllers/login')
-const loginUserController = require('./controllers/loginUser')
-
 const newPostController = require('./controllers/newPost')
 const homeController = require('./controllers/home')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
+const newUserController = require('./controllers/newUser')
+const storeUserController = require('./controllers/storeUser')
+const loginController = require('./controllers/login')
+const loginUserController = require('./controllers/loginUser')
+const expressSession = require('express-session');
+const logoutController = require('./controllers/logout')
 
 const validateMiddleware = require("./middleware/validateMiddleware");
+const authMiddleware = require('./middleware/authMiddleware');
+const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
 
-//const path = require('path')
-//const BlogPost = require('./models/BlogPost.js')
+
 
 app.use(fileUpload())
 
 //connection to mongodb
 mongoose.connect('mongodb://localhost/my_database', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -41,18 +44,30 @@ app.listen(4000, () => {
   console.log('App listening on port 4000 ...')
 })
 
-app.use('/posts/new', validateMiddleware)
+app.use(expressSession({
+  secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: true
+}))
 
-app.get('/create', newPostController)
+global.loggedIn = null;
+
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.userId;
+    next()
+});
+
+
+app.get('/posts/new',authMiddleware, newPostController)
 app.get('/', homeController)
 app.get('/post/:id', getPostController)
-app.post('/posts/store', storePostController)
-
-app.get('/auth/register', newUserController)
-app.post('/users/register', storeUserController)
-app.get('/auth/login',loginController)
-app.post('/users/login', loginUserController)
-
+app.post('/posts/store', authMiddleware, storePostController)
+app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController)
+app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController)
+app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController)
+app.post('/users/login',redirectIfAuthenticatedMiddleware, loginUserController)
+app.get('/auth/logout', logoutController)
+app.use((req, res) => res.render('notfound'));
 
 /*
 
