@@ -16,10 +16,12 @@ module.exports = (req, res) => {
           req.session.userId = user._id
           res.redirect('/')
         } else {
+          //Object.keys(error.errors).map(key => error.errors[key].message)
           res.redirect('/auth/login')
         }
       })
     } else {
+      //Object.keys(error.errors).map(key => error.errors[key].message)
       res.redirect('/auth/login')
     }
   })

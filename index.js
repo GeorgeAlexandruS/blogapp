@@ -20,10 +20,12 @@ const logoutController = require('./controllers/logout')
 const validateMiddleware = require("./middleware/validateMiddleware");
 const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
+const flash = require('connect-flash')
 
 
 
 app.use(fileUpload())
+app.use(flash())
 
 //connection to mongodb
 mongoose.connect('mongodb://localhost/my_database', {
