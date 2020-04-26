@@ -17,6 +17,9 @@
     "email": "feedback@sublimecad.com"
   },
   "license": "MIT",
+  "engines": {
+    "node": "13.7.0"
+  },
   "author": "GeorgeS",
   "contributors": [
     "Geoge Sfica"
