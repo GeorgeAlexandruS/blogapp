@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<!-- Header -->
+<%- include('layouts/header'); -%>
+
+<body class="home">
+  <div id="wrapper">
+
+    <!-- Loader -->
+    <%- include('layouts/loader'); -%>
+
+    <!-- Navigation -->
+    <%- include('layouts/navbar'); -%>
+
+    <main id="main" class="site-main">
+      <section class="page-title" style="background-image: url(/img/model01.png);">
+        <div class="overlay"></div>
+        <div class="container">
+          <h1>Welcome to sublimeCAD</h1>
+          <p>CAD design | Computational Design | Generative Design</p>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <form action="#" method="get" class="page-title-search">
+                <input name="s" type="search" placeholder="Search...">
+                <input type="submit" value="Search">
+              </form>
+            </div>
+          </div>
+          <p class="page-title-desc">Popular Search: <a href="#">autocad</a>, <a href="#">python</a>, <a href="#">generative design</a></p>
+        </div><!-- .container -->
+      </section><!-- .page-title -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 main-content">
+            <h2 class="contact-title">New BLog</h2>
+            <form action="/posts/store" method="POST" enctype="multipart/form-data">
+
+              <div class="field input-field">
+                <input type="text" placeholder="Title" id="title" name="title">
+              </div>
+
+              <div class="field input-field">
+                <input type="text" placeholder="Subtitle" id="subtitle" name="subtitle">
+              </div>
+
+              <div class="field input-field">
+                <textarea id="body" name="body" placeholder="Your Message*"></textarea>
+              </div>
+
+              <div class="field input-field">
+                <input type="file" class="form-control" placeholder="Image" id="image" name="image">
+              </div>
+
+              <div class="field input-submit">
+                <input type="submit" value="Send" class="button primary-button">
+              </div>
+            </form>
+          </div><!-- .main-content -->
+
+
+
+    </main><!-- .site-main -->
+
+    <%- include('layouts/footer'); -%>
+  </div>
+</body>
+
+</html>

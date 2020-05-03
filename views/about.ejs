@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Header -->
 <%- include('layouts/header'); -%>
 
-<body>
-  <!-- Navigation -->
-  <%- include('layouts/navbar'); -%>
+<body class="home">
+  <div id="wrapper">
 
+    <!-- Loader -->
+    <%- include('layouts/loader'); -%>
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/bg_02.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>about<span style="color:#B10DC9;">US</span></h1>
-            <span class="subheading">This is what we do.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+    <!-- Navigation -->
+    <%- include('layouts/navbar'); -%>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
-      </div>
-    </div>
+    <main id="main" class="site-main">
+      <section class="page-title" style="background-image: url(/img/model01.png);">
+        <div class="overlay"></div>
+        <div class="container">
+          <h1>About sublimeCAD</h1>
+          <!-- <ul class="breadcrumbs">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="current">Blog List</li>
+          </ul> -->
+        </div><!-- .container -->
+      </section><!-- .page-title -->
+
+      <section class="who-we-are section">
+        <div class="container">
+          <h2 class="section-title">Who we <span>are</span>?</h2>
+          <p class="section-desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="intro-box">
+                <h3 class="intro-title"><a href="#">Good company</a></h3>
+                <div class="intro-desc">Vestibulum dapibus ac ex sit amet accumsan. Suspendisse blandit, nunc nec finibus finibus, mauris dui volutpat ex, quis ultricies lorem erat ac diam. Aliquam eget est at tellus tempor iaculis sit amet vel
+                  enim. </div>
+                <a class="read-more" href="#">View Our Services</a>
+              </div><!-- .intro-box -->
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="intro-box">
+                <h3 class="intro-title"><a href="#">AWESOME TEAM</a></h3>
+                <div class="intro-desc">Aliquam sagittis, turpis ac pulvinar lobortis, lorem sem lobortis elit, sollicitudin rutrum urna libero ac est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                  egestas. </div>
+                <a class="read-more" href="#">Meet Our Team</a>
+              </div><!-- .intro-box -->
+            </div>
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </section><!-- .who-we-are -->
+
+    </main><!-- .site-main -->
+
+    <%- include('layouts/footer'); -%>
   </div>
-
-  <hr>
-
-  <!-- Footer -->
-  <%- include('layouts/footer'); -%>
-
-  <!-- scripts -->
-  <%- include('layouts/scripts'); -%>
-
 </body>
 
 </html>

@@ -8,6 +8,8 @@ const fileUpload = require('express-fileupload')
 
 const newPostController = require('./controllers/newPost')
 const homeController = require('./controllers/home')
+const blogController = require('./controllers/blog')
+const aboutController = require('./controllers/about')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
 const newUserController = require('./controllers/newUser')
@@ -51,7 +53,8 @@ if (port == null || port == "") {
   port = 4000;
 }
 app.listen(port, () => {
-  console.log('App listening...')
+  console.log('App listening on port 4000...')
+  console.log('go to http://localhost:4000/')
 })
 
 app.use(expressSession({
@@ -70,6 +73,8 @@ app.use("*", (req, res, next) => {
 
 app.get('/posts/new', authMiddleware, newPostController)
 app.get('/', homeController)
+app.get('/blog', blogController)
+app.get('/about', aboutController)
 app.get('/post/:id', getPostController)
 app.post('/posts/store', authMiddleware, storePostController)
 app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController)
@@ -78,40 +83,3 @@ app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController)
 app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
 app.get('/auth/logout', logoutController)
 app.use((req, res) => res.render('notfound'));
-
-/*
-
-const validateMiddleWare = (req,res,next)=>{
-    if(req.files == null || req.body.title == null || req.body.title == null){
-        return res.redirect('/posts/new')
-    }
-    next()
-}
-
-app.get('/post/:id',async (req,res)=>{
-    const blogpost = await BlogPost.findById(req.params.id)
-    console.log(blogpost)
-    res.render('post',{
-        blogpost
-    });
-})
-
-app.post('/posts/store', (req,res)=>{
-    let image = req.files.image;
-    image.mv(path.resolve(__dirname,'public/img',image.name),async (error)=>{
-        await BlogPost.create({
-            ...req.body,
-            image: '/img/' + image.name
-        })
-        res.redirect('/')
-    })
-})
-
-app.get('/',async (req,res)=>{
-    console.log("home starting...")
-    const blogposts = await BlogPost.find({})
-    res.render('index',{
-        blogposts
-    });
-})
-*/

@@ -10,43 +10,34 @@
 
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('/img/bg_01.jpg')">
+  <section class="page-title" style="background-image: url(/img/login_01.jpg);">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>register a new <span style="color:#B10DC9;">ACCOUNT</span></h1>
-            <span class="subheading">register new account</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+      <h1>Register a new account</h1>
+      <!-- <ul class="breadcrumbs">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Pages</a></li>
+        <li class="current">Blog List</li>
+      </ul> -->
+    </div><!-- .container -->
+  </section><!-- .page-title -->
 
   <!-- Main Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Want to tell the world about you view on a certain design topic? Post a new blog.</p>
-        <% if(errors != null && errors.length > 0){ %>
-        <ul class="list-group"></ul>
-        <% for (var i = 0; i < errors.length; i++) { %>
-        <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
-        <% } %>
-        </ul>
-        <% } %>
+        <h2>Insert registration details below</h2>
         <form action="/users/register" method="POST" enctype="multipart/form-data">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Username</label>
-              <input type="text" class="form-control" placeholder="Username" id="username" name="username" value="<%=username%>">
+              <input type="text" class="form-control" placeholder="Username" id="username" name="username">
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="<%=password%>">
+              <input type="password" class="form-control" placeholder="Password" id="password" name="password">
             </div>
           </div>
           <!-- <div class="control-group">
@@ -58,7 +49,7 @@
           <br>
           <div id="success"></div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Register</button>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Login</button>
           </div>
         </form>
       </div>

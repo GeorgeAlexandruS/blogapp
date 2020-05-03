@@ -1,51 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Header -->
 <%- include('layouts/header'); -%>
 
-<body>
-  <!-- Navigation -->
-  <%- include('layouts/navbar'); -%>
+<body class="home">
+  <div id="wrapper">
 
+    <!-- Loader -->
+    <%- include('layouts/loader'); -%>
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('<%= blogpost.image %>')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1><%= blogpost.title %></h1>
-            <!-- <h2 class="subheading"><%= blogpost.body %></h2> -->
-            <span class="meta">Posted by
-              <a href="#"><%= blogpost.userid.username %></a>
-              on <%= blogpost.datePosted.toDateString() %></span>
-          </div>
+    <!-- Navigation -->
+    <%- include('layouts/navbar'); -%>
+
+    <main id="main" class="site-main">
+      <section class="page-title" style="background-image: url('<%= blogpost.image %>')">
+        <div class="overlay"></div>
+        <div class="container">
+          <h1><%= blogpost.title %></h1>
+          <ul class="post-meta">
+            <li>Posted on <a href="#"><%= blogpost.datePosted.toDateString() %></a></li>
+            <li>By <a href="#"><%= blogpost.userid.username %></a></li>
+            <li>Category <a href="#">Design</a></li>
+          </ul>
+        </div><!-- .container -->
+      </section><!-- .page-title -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 main-content">
+            <article class="post">
+              <div class="entry-content">
+                <h1><%= blogpost.subtitle %></h1>
+                <p><%- blogpost.body %></p>
+              </div>
+              <footer class="entry-footer">
+                <!-- <div class="tags-links">
+                  <span>TAGS:</span>
+                  <a rel="tag" href="#">#Wordpress</a>
+                  <a rel="tag" href="#">#Helpdesk</a>
+                </div> -->
+
+                <div class="author-info clearfix">
+                  <a class="avatar" href="#"><img alt="" src="images/placeholder/user1.jpg"></a>
+                  <div class="author-bio">
+                    <h3><a href="#"><%= blogpost.userid.username %></a></h3>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p> -->
+                  </div>
+                </div>
+              </footer>
+            </article>
+          </div><!-- .main-content -->
+
         </div>
       </div>
-    </div>
-  </header>
+  </div><!-- .container -->
+  </main><!-- .site-main -->
 
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <%- blogpost.body %>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <hr>
-
-  <!-- Footer -->
   <%- include('layouts/footer'); -%>
 
-  <!-- scripts -->
-  <%- include('layouts/scripts'); -%>
-
+  </div>
 </body>
-
-</html>

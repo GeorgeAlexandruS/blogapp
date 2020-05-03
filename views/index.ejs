@@ -1,58 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <!-- Header -->
 <%- include('layouts/header'); -%>
 
-<body>
-  <!-- Navigation -->
-  <%- include('layouts/navbar'); -%>
+<body class="home">
+  <div id="wrapper">
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/model01.png')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>sublime<span style="color:#B10DC9;">BLOG</span></h1>
-            <span class="subheading">about design</span>
+    <!-- Loader -->
+    <%- include('layouts/loader'); -%>
+
+    <!-- Navigation -->
+    <%- include('layouts/navbar'); -%>
+
+    <main id="main" class="site-main">
+      <section class="page-title" style="background-image: url(/img/model06.png);">
+        <div class="overlay"></div>
+        <div class="container">
+          <h1>Welcome to sublimeCAD</h1>
+          <p>CAD design | Computational Design | Generative Design</p>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <form action="#" method="get" class="page-title-search">
+                <input name="s" type="search" placeholder="Search...">
+                <input type="submit" value="Search">
+              </form>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </header>
+          <p class="page-title-desc">Popular Search: <a href="#">autocad</a>, <a href="#">python</a>, <a href="#">generative design</a></p>
+        </div><!-- .container -->
+      </section><!-- .page-title -->
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-                <% for (var i = 0; i < blogposts.length; i++) { %>
-        <div class="post-preview">
-          <a href="/post/<%= blogposts[i]._id %>">
-            <h2 class="post-title">
-              <%= blogposts[i].title %>
-            </h2>
-            <h3 class="post-subtitle">
-              <%- blogposts[i].body %>
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#"><%= blogposts[i].userid.username %></a>
-            on <%= blogposts[i].datePosted.toDateString() %></p>
-        </div>
-        <hr>
-        <% } %>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-        </div>
-      </div>
-    </div>
+      <section class="popular-help section">
+        <div class="container">
+          <h2 class="section-title">Browse for <span>popular</span> topics</h2>
+          <p class="section-desc">Select a topic from the list below.</p>
+
+          <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="/img/assets/icons/icon11.png" alt=""></div>
+                <h3 class="service-title"><a href="#">CAD Design</a></h3>
+                <div class="service-desc">Getting started with cad design.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="images/assets/icons/icon12.png" alt=""></div>
+                <h3 class="service-title"><a href="#">3D Modeling</a></h3>
+                <div class="service-desc">Getting started with 3D Modeling.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="images/assets/icons/icon13.png" alt=""></div>
+                <h3 class="service-title"><a href="#">Computational Design</a></h3>
+                <div class="service-desc">Find out about advantages of computational design.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="images/assets/icons/icon14.png" alt=""></div>
+                <h3 class="service-title"><a href="#">Generative Design</a></h3>
+                <div class="service-desc">Explore generative design and it's features.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="images/assets/icons/icon15.png" alt=""></div>
+                <h3 class="service-title"><a href="#">Design Thinking</a></h3>
+                <div class="service-desc">What is design thinking and what impact does it have on the design industry.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-6">
+              <div class="service-box has-bg">
+                <div class="icon"><img src="images/assets/icons/icon16.png" alt=""></div>
+                <h3 class="service-title"><a href="#">Design Automation</a></h3>
+                <div class="service-desc">How to speed up your design process with automation.</div>
+              </div><!-- .service-box has-bg -->
+            </div>
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </section><!-- .can-we-help-you -->
+
+
+      <section class="blog-slider-section section light-bg">
+        <div class="container">
+          <h2 class="section-title">Latest <span>blog posts</span></h2>
+          <p class="section-desc">Browse through our blog and keep up with the latest suggestions.</p>
+
+          <div class="blog-slider blog-grid owl-carousel">
+            <% for (var i = 0; i < blogposts.length; i++) { %>
+            <article class="post">
+              <a href="/post/<%= blogposts[i]._id %>" class="post-thumb hover-cycle">
+                <img alt="image" src="<%= blogposts[i].image %>">
+              </a>
+              <div class="post-info">
+                <h3 class="post-title"><a href="/post/<%= blogposts[i]._id %>" </a><%= blogposts[i].title %> </h3> <p class="post-desc"><%- blogposts[i].subtitle %></p>
+              </div>
+            </article>
+            <% } %>
+          </div><!-- .blog-slider -->
+
+        </div><!-- .container -->
+      </section><!-- .blog-slider-section -->
+    </main><!-- .site-main -->
+
+    <%- include('layouts/footer'); -%>
+
   </div>
-  <hr>
-  <%- include('layouts/footer'); -%>
-  <%- include('layouts/scripts'); -%>
 </body>
 
 </html>
